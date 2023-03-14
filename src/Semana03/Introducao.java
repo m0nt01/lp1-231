@@ -9,7 +9,7 @@ public class Introducao{
 
         /*
          * 
-         * Comentários de múltiplas linhas
+         git config --global user.email "Seu E-mail"* Comentários de múltiplas linhas
          */
 
          // Tipos Primitivos
