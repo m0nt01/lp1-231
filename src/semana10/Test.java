@@ -1,4 +1,4 @@
-package semana6;
+package semana10;
 
 public @interface Test {
 
