@@ -15,6 +15,6 @@ public class Conta {
 
     }
 
-    public double calcularTarifa(){}
-    return (saldo * 0.5);
+    public double calcularTarifa(){
+    return (saldo * 0.5);}
     }

@@ -106,7 +106,7 @@ double n2 = 2.0;
     
       assertEquals(20.0, soma);
        
-      }
+      }package semana6;
       @Test
       public void multiplicarDoisNumerosNegativos (){
       
@@ -156,14 +156,7 @@ double n2 = 2.0;
        double n1 = -10.0;
        double n2 = -2.0;
            
-       
-          double soma = Calculadora.dividir(n1,n2);
-       
-       
-        
-          assertEquals(5.0, soma);
-           
-          }
+       package semana6;
           @Test
           public void dividirUmNumeroPositivoEUmNegativo (){
           

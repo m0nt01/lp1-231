@@ -7,7 +7,7 @@ public class Vendedor {
     public Vendedor(String nome, double vendas, double comissao) {
         this.nome = nome;
         this.vendas = vendas;
-        this.comissão = comissao;
+        this.comissao = comissao;
     }
 
     public double obterSalario() {
