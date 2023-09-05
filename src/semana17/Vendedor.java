@@ -1,3 +1,5 @@
+package semana17;
+
 public class Vendedor {
 
     private String nome;

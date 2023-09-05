@@ -31,20 +31,7 @@ double n2 = -2.0;
  double soma = Calculadora.somar(n1,n2);
 
 
-
- assertEquals(8.0, soma);
-  
- }
-
- @Test
- public void somaDoisNumerosNegativos (){
  
-double n1 = -10.0;
-double n2 = -2.0;
-   
-
-  double soma = Calculadora.somar(n1,n2);
-
 
  
   assertEquals(-12.0, soma);
@@ -106,7 +93,7 @@ double n2 = 2.0;
     
       assertEquals(20.0, soma);
        
-      }package semana6;
+      }
       @Test
       public void multiplicarDoisNumerosNegativos (){
       
@@ -156,7 +143,6 @@ double n2 = 2.0;
        double n1 = -10.0;
        double n2 = -2.0;
            
-       package semana6;
           @Test
           public void dividirUmNumeroPositivoEUmNegativo (){
           
