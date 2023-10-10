@@ -31,7 +31,7 @@ public class InserirAluno {
       statement.setString(2, nome);
       statement.setString(3, email);
       statement.setBoolean(4, ativo);
-);
+;
  
         statement.executeUpdate();
 

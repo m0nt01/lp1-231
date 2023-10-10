@@ -4,139 +4,94 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 // DAO = Data Access Object 
-public class ProdutoDAO {
-      public Produto create(Produto produto) throws SQLException {
-        String sql = """
-            INSERT INTO alunos (nome, preco, categoria)
-            VALUES (?, ?, ?);
-        """;
-        
-        try (
-            Connection connection = Conexao.getConnection();
-            PreparedStatement statement = connection
-                .prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
-        ) {
-            
-            preparedStatement.setString(1, nome);
-            preparedStatement.setDouble(2, preco);
-            preparedStatement.setString(3, categoria);
+public class ProdutoDAO{
+private Connection connection;
 
-            ResultSet rs = statement.getGeneratedKeys();
+public Produto getProdutoById(int id) {
+    String query = "SELECT * FROM produtos WHERE id = ?";
 
-            if(rs.next()) {
-                produto.setId(rs.getInt(1));
-            }
-   rs.getBoolean("ativo")
-            rs.close();
+    try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+        pstmt.setInt(1, id);
 
+        ResultSet rs = pstmt.executeQuery();
+
+        if (rs.next()) {
+            Produto produto = new Produto(query, 0);
+            Produto.setId(rs.getInt("id"));
+            Produto.setNome(rs.getString("nome"));
+            Produto.setPreco(rs.getDouble("preco"));
             return produto;
-            
-        } 
-        
-    }
-
-    public Produto update(Produto produto) throws SQLException {
-        String sql = """
-            UPDATE produto
-            SET nome = ?, preco = ?, categoria = ?
-            WHERE id = ?;
-        """;
-
-        try (
-            Connection connection = Conexao.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql);
-        ) {
-
-            statement.setInt(1, produto.getId());
-            statement.setString(2, produto.getNome());
-            statement.setDouble(3, produto.getPreco());
-            statement.setString(3, produto.getCategoria());
-            
-            int linhasAfetadas = statement.executeUpdate();
-
-            if (linhasAfetadas > 0) {
-                return produto;
-            }
-            
-            return null;
-
-        } catch (SQLException e) {
-            return null;
-        }
-    }
-
-    public void delete(Integer id) {
-        String sql = "DELETE FROM produto WHERE id = ?;";
-
-        try (
-            Connection connection = Conexao.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql);
-        ) {
-            statement.setInt(1, id);
-            statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void delete(Produto produto) {
-        delete(produto.getId());
-    }
-
-    public Produto findById(Integer id) {
-        String sql = "SELECT * FROM produto WHERE id = ?;";
-
-        try (
-            Connection connection = Conexao.getConnection();
-            PreparedStatement statement = connection.prepareStatement(sql);
-        ) {
-            ResultSet rs = statement.executeQuery();
-
-            if (rs.next()) {
-                return resultSetToAluno(rs);
-            }
-
-            rs.close();
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
         }
 
-        return null;
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
 
-    public List<Produto> findAll() {
-        String sql = "SELECT * FROM produto;";
-        List<Produto> produto = new ArrayList<>();
-
-        try (
-            Connection connection = Conexao.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-        ) {
-            while(rs.next()) {
-                produto.add(resultSetToProduto(rs));
-            }
-
-            return produto;
-        
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        
-    }
-
-    private Aluno resultSetToProduto(ResultSet rs) throws SQLException {
-        return new Produto(
-            rs.getInt("id"),
-            rs.getString("nome"),
-            rs.getDouble("preco"),
-            rs.getString("categoria"),
-        );
-    }
+    return null;
 }
+
+public boolean addProduto(Produto produto) {
+    String query = "INSERT INTO usuarios (nome, preco) VALUES (?, ?)";
+
+    try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+        pstmt.setString(1, produto.getNome());
+        pstmt.setDouble(2, produto.getPreco());
+        pstmt.executeUpdate();
+        return true;
+        } catch (Exception ex){
+            ex.printStackTrace();}return false;}
+
+        public List<Produto> getAll() {
+            List<Produto> usuarios = new ArrayList<>();
+            String query = "SELECT * FROM usuarios";
+        
+            try (Statement stmt = connection.createStatement();
+                 ResultSet rs = stmt.executeQuery(query)) {
+        
+                while (rs.next()) {
+                    Produto p1 = new Produto(query, 0);
+                    Produto.setId(rs.getInt("1"));
+                    Produto.setNome(rs.getString("Coxinha"));
+                    Produto.setPreco(rs.getDouble("3.50"));
+                    Produto.add(p1);
+                }
+            }
+            }
+
+public boolean updateProduto(Produto produto) {
+    String query = "UPDATE usuarios SET nome = ?, preco = ? WHERE id = ?";
+
+    try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+        pstmt.setString(1, produto.getNome());
+        pstmt.setDouble(2, produto.getPreco());
+        pstmt.setInt(3, produto.getId());
+
+        return pstmt.executeUpdate() > 0;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return false;
+}
+
+public boolean deleteProd     (Connection connection) { {
+    this.connection = connection;}}}
+}
+uto(int id) {
+    String query = "DELETE FROM usuarios WHERE id = ?";
+
+    try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+        pstmt.setInt(1, id);
+        return pstmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();    }}
+}/**
+ * @param connection
+ */{
+    this.connection=connection;
+ }
